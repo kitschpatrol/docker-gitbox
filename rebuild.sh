@@ -1,4 +1,6 @@
 #!/bin/bash
+git stash
+git clean -f
 git pull
 docker stop gitbox
 docker rm gitbox
