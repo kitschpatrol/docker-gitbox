@@ -1,23 +1,22 @@
 #!/bin/bash
 
-HELP_TEXT="useage: $0 <repo url>
+HELP_TEXT="usage: $0 <repo url>"
 
 #Permissions
 USER=git
 GROUP=git
 
 #Reopository Path
-REPO=/repos
+REPO="/repos"
 
 #GIT executable
-GIT=`which git`
+GIT="`which git`"
 
 #Args
 URL=$1
 NAME="$(echo "$(echo "$URL" | grep / | cut -d/ -f $(($(grep -o '/' <<< "$URL" | wc -l)+1)) -)")"
-GIT=$(sed)
 
-if [ $# != "2" ]; then
+if [ $# != "1" ]; then
   echo $HELP_TEXT
   exit 1
 fi
