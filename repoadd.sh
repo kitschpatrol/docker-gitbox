@@ -22,7 +22,7 @@ if [ $# != "2" ]; then
 fi
 
 if [[ $NAME =~ \.git$ ]]; then
-  $GIT init --bare --shared $REPO$NAME
+  $GIT init --bare --shared $REPO/$NAME
   echo $DESC > $REPO/$NAME/description
   touch $REPO$NAME/git-daemon-export-ok
   chown $USER:$GROUP -R $REPO
