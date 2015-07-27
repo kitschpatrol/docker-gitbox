@@ -7,7 +7,7 @@ USER=git
 GROUP=git
 
 #Reopository Path
-REPO=/repos/
+REPO=/repos
 
 #GIT executable
 GIT=`which git`
@@ -23,7 +23,7 @@ fi
 
 if [[ $NAME =~ \.git$ ]]; then
   $GIT init --bare --shared $REPO$NAME
-  echo $DESC > $REPO$NAME/description
+  echo $DESC > $REPO/$NAME/description
   touch $REPO$NAME/git-daemon-export-ok
   chown $USER:$GROUP -R $REPO
 else
