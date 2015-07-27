@@ -3,14 +3,14 @@
 HELP_TEXT="useage: $0 <reponame.git> '<repo description>'"
 
 #Permissions
-USER=git
-GROUP=git
+USER="git"
+GROUP="git"
 
 #Reopository Path
-REPO=/repos
+REPO="/repos"
 
 #GIT executable
-GIT=`which git`
+GIT="`which git`"
 
 #Args
 NAME=$1
