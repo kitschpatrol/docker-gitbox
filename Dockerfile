@@ -33,7 +33,7 @@ RUN mkdir -p /var/www && \
 
 #create config files for container startup, gitlist and nginx
 COPY start.sh /start.sh
-COPY gitd /etc/init.d/gitd
+COPY gitd.init /etc/init.d/gitd
 COPY repoadd.sh /usr/local/bin/repoadd.sh
 COPY config.ini /var/www/gitlist/config.ini
 COPY nginx.conf /etc/nginx/nginx.conf
