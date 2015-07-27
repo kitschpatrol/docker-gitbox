@@ -59,7 +59,9 @@ if [ ! -e /repos ]; then
 fi
 
 #Fix persmissions for repo 
-chown git:git -R 777 /repos
+sclog  "Fixing permissions for "repos" folder..."
+chown -R git:git /repos >& /dev/null
+chmod -R 777 /repos >& /dev/null
 
 #start services in background
 startc
