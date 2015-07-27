@@ -27,6 +27,10 @@ Server Repo Setup:
 
 **Setup a empty repository from docker host:**
 
+    docker exec gitbox repoadd.sh <reponame>.git <description>
+    
+*example:*
+    
     docker exec gitbox repoadd.sh myrepo.git "This is my first git repo."
 
 Client / Server Connection:
