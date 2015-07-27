@@ -46,6 +46,8 @@ Client / Server Connection:
 
 **Setup client to use empty repository**
 
+Assuming you have created a empty repo as show above named myrepo.git:
+
     mkdir myrepo
     cd myrepo
     git init
@@ -68,7 +70,7 @@ Open internet browser to http://192.168.10.52 to access web repo browsing...
     
 **Git HTTP Access:**
 
-    git clone htp://192.168.10.52/git/myrepo.git
+    git clone http://192.168.10.52/git/myrepo.git
     
 **Authentication:**
 
