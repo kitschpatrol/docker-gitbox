@@ -32,6 +32,14 @@ Server Repo Setup:
 *example:*
     
     docker exec gitbox repoadd.sh myrepo.git "This is my first git repo."
+    
+**Clone an existing repo from another location:**
+
+    docker exec gitbox repoclone.sh <url>
+    
+*example:*
+    
+    docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git
 
 Client / Server Connection:
 ---------------------------
@@ -71,6 +79,12 @@ Open internet browser to http://192.168.10.52 to access web repo browsing...
     
 News:
 -----
+
+*Change log 2015-7-27*
+
+* Added repoclone option
+* Cleaned up start.sh
+* Cleaned up Dockerfile
 
 *Change log 2015-7-16*
 
