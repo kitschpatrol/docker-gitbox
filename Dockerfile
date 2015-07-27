@@ -35,11 +35,13 @@ RUN mkdir -p /var/www && \
 COPY start.sh /start.sh
 COPY gitd.init /etc/init.d/gitd
 COPY repoadd.sh /usr/local/bin/repoadd.sh
+COPY repoclone.sh /usr/local/bin/repoclone.sh
 COPY config.ini /var/www/gitlist/config.ini
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN chmod 755 /start.sh && \
 	chmod 755 /etc/init.d/gitd && \
-	chmod 755 /usr/local/bin/repoadd.sh
+	chmod 755 /usr/local/bin/repoadd.sh && \
+	chmod 755 /usr/local/bin/repoclone.sh
 
 #setup default username and password for authentication
 RUN htpasswd -cb /etc/nginx/htpasswd gitadmin gitsecret
