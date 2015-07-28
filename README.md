@@ -97,7 +97,9 @@ You can access git box using a internet browser. This utilizes the gitlist proje
 
 *Note: This example assumes you are running gitbox using the default docker mappings defined above. If not, adjust accordingly.*
 
-Open an internet browser to **http://<docker host ip or hostname>** to access the gitlist interface and browse the repositories on gitbox.
+Open an internet browser to to the dockerbox gitbox is running on to access the gitlist interface and browse the repositories on gitbox.
+
+    http://<docker host ip or hostname>
 
 *Note: If your repository's directory is empty, this url presents a blank page...*
 
