@@ -81,18 +81,6 @@ Client / Server Connection:
     git push --set-upstream origin master
     
 *Note: This process will require authentication to the http server on clone, pull, or push. See Authentication.*
-    
-**Setup client to clone a repository via git-daemon***
-
-    git clone git://<docker host ip or hostname>/myrepo.git
-    
-*Note: This assumes the 'export' keyword was used when creating this repository. 
-    
-**Setup client to clone a repository via git smart-http***
-
-    git clone http://<docker host ip or hostname>/git/myrepo.git
-    
-*Note: Notice the URL difference between this method and the previous. This process will require authentication to the http server on clone, pull, or push. See Authentication.*
 
 **[Gitlist] (http://gitlist.org/) Browser Access:**
 
@@ -116,11 +104,11 @@ The git daemon running on gitbox allows access to the repository using the git:/
     
 **Git [SMART-HTTP] (https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) Access:**
 
-The git smart-http daemon running on git box allows a more traditional approach to accessing your repositories. This is similar to what most use with hosted repositories such as github.
+The git smart-http daemon running on gitbox allows a more traditional approach to accessing your repositories. This is similar to what most use with hosted repositories such as github.
 
     git clone http://<docker host ip or hostname>/git/myrepo.git
     
-*Note: There is a slightly differnt url used in retrieving the git repository in this method. This is in contrast to the git:// protocol used by git daemon.*
+*Note: There is a slightly differnt url used in retrieving the git repository in this method. This is in contrast to the git:// protocol used by git daemon. This process will require authentication to the http server on clone, pull, or push. See Authentication.*
 
 **Authentication:**
 
