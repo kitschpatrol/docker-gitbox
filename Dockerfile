@@ -12,7 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
 	apt-get clean
 
 #setup services to run as user git
-RUN useradd -M -s /bin/false git && \
+RUN useradd -M -s /bin/false git --uid 1000 && \
 	sed -i 's/user = www-data/user = git/g' /etc/php5/fpm/pool.d/www.conf && \
 	sed -i 's/group = www-data/group = git/g' /etc/php5/fpm/pool.d/www.conf && \
 	sed -i 's/listen.owner = www-data/listen.owner = git/g' /etc/php5/fpm/pool.d/www.conf && \
@@ -21,7 +21,9 @@ RUN useradd -M -s /bin/false git && \
 	sed -i 's/FCGI_GROUP="www-data"/FCGI_GROUP="git"/g' /etc/init.d/fcgiwrap && \
 	sed -i 's/FCGI_SOCKET_OWNER="www-data"/FCGI_SOCKET_OWNER="git"/g' /etc/init.d/fcgiwrap && \
 	sed -i 's/FCGI_SOCKET_GROUP="www-data"/FCGI_SOCKET_GROUP="git"/g' /etc/init.d/fcgiwrap
-	
+
+#setup git readonly user for git-daemon
+RUN useradd -M -s /bin/false git-ro --uid 1000
 
 #install gitlist
 RUN mkdir -p /var/www && \
