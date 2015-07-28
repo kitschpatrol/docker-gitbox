@@ -103,7 +103,7 @@ You can access git box using a internet browser. This utilizes the gitlist proje
 
 The git daemon running on gitbox allows access to the repository using the git:// protocol.
 
-*Note: This example assumes you are running gitbox using the default docker mappings defined above. If not, adjust accordingly.*
+*Note: This example assumes you are running gitbox using the default docker tcp port mappings defined above. If not, adjust accordingly.*
 
 From your docker client cli:
 
