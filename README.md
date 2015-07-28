@@ -122,6 +122,7 @@ News:
 * Added repodelete option
 * Cleaned up start.sh
 * Cleaned up Dockerfile
+* Changed group gitd.init to run as a user with ro repo access
 
 *Change log 2015-7-16*
 
@@ -138,6 +139,6 @@ News:
 *Open Items:*
 
 * Add https setup for nginx
-* Add unauthenticated options for git clone over smart-http (currently all or none)
-* Add authentication options between client and git-daemon (currently wide open)
+* Add unauthenticated options for git clone over smart-http (currently read and write is authenticated)
+* Add authentication options between client and git-daemon (currently setup as read-only)
 * Possibly look at a centralized identity service to synchronize the two differnt authentication models of nginx and git-daemon. 
