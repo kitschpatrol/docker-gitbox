@@ -137,7 +137,7 @@ The authentication method and interaction with git and gitlist is still a work i
 News:
 -----
 
-*Change log 2015-7-27*
+*Change log 2015-7-28*
 
 * Changed git-daemon to run with only read only repo access
 * Added 'export' option to repoadd.sh and repoclone.sh scripts
