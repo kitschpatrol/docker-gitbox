@@ -6,7 +6,7 @@ GITBOX
 GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols) to access a repository. This docker image is configured with the following access methods.
 
 * git daemon
-* git smart http (nginx)
+* git smart-http (nginx)
 * gitlist web (nginx)
 
 *Note: Default Username and password for authentication have been set to gitadmin:gitsecret. See notes below about changing credentials. It is advised you reset the default credentails immediatly after installation.*
@@ -122,7 +122,7 @@ News:
 * Added repodelete option
 * Cleaned up start.sh
 * Cleaned up Dockerfile
-* Changed group gitd.init to run as a user with ro repo access
+* Changed gitd to run with ro repo access
 
 *Change log 2015-7-16*
 
@@ -140,5 +140,3 @@ News:
 
 * Add https setup for nginx
 * Add unauthenticated options for git clone over smart-http (currently read and write is authenticated)
-* Add authentication options between client and git-daemon (currently setup as read-only)
-* Possibly look at a centralized identity service to synchronize the two differnt authentication models of nginx and git-daemon. 
