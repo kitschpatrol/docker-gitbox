@@ -12,7 +12,7 @@ REPO="/repos"
 #GIT executable
 GIT="`which git`"
 
-if (( $# > 2 )); then
+if [ $# == "0" ]; then
   echo $HELP_TEXT
   exit 1
 fi
