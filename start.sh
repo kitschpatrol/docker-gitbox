@@ -61,9 +61,7 @@ fi
 #Fix persmissions for repo 
 sclog  "Fixing permissions for "repos" folder..."
 chown -R git:git-ro /repos >& /dev/null
-#chmod -R 755 /repos >& /dev/null
-#setfacl -Rdm g:git-ro:rx /repos
-#setfacl -Rm g:git-ro:rx /repos
+chmod -R u+rwx,g+r,g-w,o+r,o-w /repos >& /dev/null
 
 #start services in background
 startc
