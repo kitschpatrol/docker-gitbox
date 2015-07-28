@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
 #setup git user for nginx
 RUN useradd -M -s /bin/false git --uid 1000
 
-#setup git user for git daemon
+#setup git user for git-daemon
 RUN useradd -M -s /bin/false git-ro --uid 1001 && adduser git-ro git
 
 #setup services to run as user git, group git
