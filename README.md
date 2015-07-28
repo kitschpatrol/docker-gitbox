@@ -153,4 +153,6 @@ News:
 *Open Items:*
 
 * Add https setup for nginx
-* Further tweak authentication between nginx and git smart-http
+* Add unauthenticated options for git clone over smart-http (currently all or none)
+* Add authentication options between client and git-daemon (currently wide open)
+* Possibly look at a centralized identity service to synchronize the two differnt authentication models of nginx and git-daemon. 
