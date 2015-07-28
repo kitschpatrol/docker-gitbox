@@ -1,7 +1,7 @@
 #!/bin/bash
 DAEMON=/usr/bin/git
-USER=git
-GROUP=git
+USER=git-ro
+GROUP=git-ro
 BASE_PATH=/repos/
 ARGS="daemon --user=$USER --group=$GROUP --reuseaddr --detach --base-path=$BASE_PATH $BASE_PATH --export-all --enable=receive-pack" 
 PNAME=git-daemon
