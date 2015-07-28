@@ -9,13 +9,17 @@ GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-S
 * git smart http (nginx)
 * gitlist web (nginx)
 
-*Default Username and password for authentication have been set to gitadmin gitsecret. See notes below about changing credentials.*
+*Note: Default Username and password for authentication have been set to gitadmin:gitsecret. See notes below about changing credentials. It is advised you reset the default credentails asap.*
 
 **To run from hub.docker.com image repo:**
+
+From your docker host:
 
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
     
 **To run from github repo (Method 1):**
+
+From your docker host:
 
     git clone -b stable https://github.com/nmarus/docker-gitbox.git
     cd docker-gitbox
@@ -24,11 +28,15 @@ GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-S
     
 **To run from github repo (Method 2):**
 
+From your docker host:
+
     git clone -b stable https://github.com/nmarus/docker-gitbox.git
     cd docker-gitbox
     ./build.sh
 
-*Optionally, there are also scripts to remove the container and image and enter a bash shell from the docker host...*
+*Note: There are also scripts to remove the container and image as well as enter a bash shell...*
+
+From your docker host:
 
     ./remove.sh
     ./shell.sh
@@ -45,7 +53,7 @@ Server Repo Setup and Admin:
     
     docker exec gitbox repoadd.sh myrepo.git "This is my first git repo."
     
-**Clone an existing repo from another location:**
+**Clone an existing repository from another location:**
 
     docker exec gitbox repoclone.sh <url>
     
@@ -53,9 +61,9 @@ Server Repo Setup and Admin:
     
     docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git
     
-**Delete an existing repo:**
+**Delete an existing repository:**
 
-    docker exec gitbox repodelete.sh <reponame>.git
+    docker exec gitbox repodelete.sh <reponame>.git //use with caution//
     
 *example:*
     
@@ -82,21 +90,23 @@ Assuming you have created a empty repo as show above named myrepo.git:
 
 **[Gitlist] (http://gitlist.org/) Browser Access:**
 
-Open internet browser to http://192.168.10.52 to access web repo browsing...
+Open internet browser to http://<docker host ip or hostname> to access web repo browsing...
+
+*Note: If your repository's directory is empty, this url presents a blank page...*
 
 **Git [Daemon] (https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) Access:**
 
-    git clone git://192.168.10.52/myrepo.git
+    git clone git://<docker host ip or hostname>/myrepo.git
     
 **Git HTTP Access:**
 
-    git clone http://192.168.10.52/git/myrepo.git
+    git clone http://<docker host ip or hostname>/git/myrepo.git
     
 **Authentication:**
 
-    #erase password file and create initial creds
+    #clear (-c) password file and create (-b) initial creds
     docker exec gitbox htpasswd -cb /etc/nginx/htpasswd <user> <pass>
-    #add additional users
+    #add (-b) additional users to existing password file
     docker exec gitbox htpasswd -b /etc/nginx/htpasswd <user> <pass>
     
 News:
