@@ -121,7 +121,7 @@ The git smart-http daemon running on git box allows a more traditional approach 
 
 **Authentication:**
 
-The authentication method and interaction with git and gitlist is still a work in progress. This would *not* be considered a secure system at this point. That being said, some authentication is in place through modification to the nginx htpasswd file. 
+The authentication method and interaction with git and gitlist is still a work in progress. This would *not* be considered a secure system at this point. That being said, some authentication is in place through modification to the nginx htpasswd file. This authentication only applies to read and write access via the git smart-http protocol. 
 
     #clear (-c) password file and create (-b) initial creds
     docker exec gitbox htpasswd -cb /etc/nginx/htpasswd <user> <pass>
