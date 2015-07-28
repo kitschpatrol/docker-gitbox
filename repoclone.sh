@@ -23,6 +23,7 @@ fi
 
 if [[ $NAME =~ \.git$ ]]; then
   $GIT clone --bare --shared $URL $REPO/$NAME/
+  echo "Cloned from ${URL}" > $REPO/$NAME/description
   touch $REPO/$NAME/git-daemon-export-ok
   chown $USER:$GROUP -R $REPO
 else
