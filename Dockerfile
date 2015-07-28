@@ -23,7 +23,7 @@ RUN useradd -M -s /bin/false git --uid 1000 && \
 	sed -i 's/FCGI_SOCKET_GROUP="www-data"/FCGI_SOCKET_GROUP="git"/g' /etc/init.d/fcgiwrap
 
 #setup git readonly user for git-daemon
-RUN useradd -M -s /bin/false git-ro --uid 1000
+RUN useradd -M -s /bin/false git-ro --uid 1001
 
 #install gitlist
 RUN mkdir -p /var/www && \
