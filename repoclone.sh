@@ -24,7 +24,7 @@ fi
 if [[ $NAME =~ \.git$ ]]; then
   $GIT clone --bare --shared $URL $REPO/$NAME/
   echo "Cloned from ${URL}" > $REPO/$NAME/description
-  if [ $2 == "export" ]; then touch $REPO/$NAME/git-daemon-export-ok; fi
+  if [ "$2" == "export" ]; then touch $REPO/$NAME/git-daemon-export-ok; fi
   chown $USER:$GROUP -R $REPO
 else
   echo $HELP_TEXT
