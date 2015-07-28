@@ -24,22 +24,7 @@ From your docker host:
     git clone -b stable https://github.com/nmarus/docker-gitbox.git
     cd docker-gitbox
     docker build --rm=true -t nmarus/gitbox .
-    docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
-    
-**To run from github repository (Method 2):**
-
-From your docker host:
-
-    git clone -b stable https://github.com/nmarus/docker-gitbox.git
-    cd docker-gitbox
-    ./build.sh
-
-*Note: There are also scripts to remove the container and image as well as enter a bash shell...*
-
-From your docker host you can run:
-
-    ./remove.sh
-    ./shell.sh
+    docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v </my/git/repo/directory>:/repos nmarus/gitbox
 
 
 Server Repository Setup and Admin:
