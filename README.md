@@ -5,9 +5,9 @@ GITBOX
 
 GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols) to access a repository. This docker image is configured with the following access methods.
 
-* git daemon
-* git smart-http (nginx)
-* gitlist web (nginx)
+* git daemon (git://[...])
+* git smart-http (powered by nginx)
+* gitlist web (powered by nginx)
 
 *Note: Default Username and password for authentication have been set to gitadmin:gitsecret. See notes below about changing credentials. It is advised you reset the default credentails immediatly after installation.*
 
@@ -35,19 +35,23 @@ To make this setup easier, gitbox allows an administrator to define these direct
 
 **To setup an empty repository:**
 
-    docker exec gitbox repoadd.sh <reponame>.git <description>
+    docker exec gitbox repoadd.sh <reponame>.git <description> [export]
     
 *example:*
     
-    docker exec gitbox repoadd.sh myrepo.git "This is my first git repo."
+    docker exec gitbox repoadd.sh myrepo.git "This is my first git repo." export
+    
+*Note: Adding the option 'export' keyword to this command marks the repository exportable for read-only access from git-daemon (git://[...]). If 'export' is not specified, then the repository must be authenticated to via git smart-http. 
     
 **To clone an existing repository from another location:**
 
-    docker exec gitbox repoclone.sh <url>
+    docker exec gitbox repoclone.sh <url> [export]
     
 *example:*
     
-    docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git
+    docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git export
+    
+*Note: Adding the option 'export' keyword to this command marks the repository exportable for read-only access from git-daemon (git://[...]). If 'export' is not specified, then the repository must be authenticated to via git smart-http. 
     
 **To delete a gitbox repository:**
 
@@ -60,14 +64,14 @@ To make this setup easier, gitbox allows an administrator to define these direct
 Client / Server Connection:
 ---------------------------
 
-**Setup client to use empty repository**
+**Setup client to use empty repository via http**
 
 *Note: This example assumes you have created a empty repository (as show above) named "myrepo.git". This is intended to be executed from your git client command line inside the directory you wish to store the repository locally. See [Getting Started - Git Basics.] (https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)*
 
     mkdir myrepo
     cd myrepo
     git init
-    git remote add origin http://192.168.10.52/git/myrepo.git
+    git remote add origin http://<docker host ip or hostname>/git/myrepo.git
     git pull
     git checkout -b master
     touch README.md
@@ -75,6 +79,20 @@ Client / Server Connection:
     git add -A 
     git commit -m "This is my initial commit."
     git push --set-upstream origin master
+    
+*Note: This process will require authentication to the http server on clone, pull, or push. See Authentication.*
+    
+**Setup client to clone a repository via git-daemon***
+
+    git clone git://<docker host ip or hostname>/myrepo.git
+    
+*Note: This assumes the 'export' keyword was used when creating this repository. 
+    
+**Setup client to clone a repository via git smart-http***
+
+    git clone http://<docker host ip or hostname>/git/myrepo.git
+    
+*Note: Notice the URL difference between this method and the previous. This process will require authentication to the http server on clone, pull, or push. See Authentication.*
 
 **[Gitlist] (http://gitlist.org/) Browser Access:**
 
@@ -106,11 +124,14 @@ The git smart-http daemon running on git box allows a more traditional approach 
 
 **Authentication:**
 
-The authentication method and interaction with git and gitlist is still a work in progress. This would *not* be considered a secure system at this point. That being said, some authentication is in place through modification to the nginx htpasswd file. This authentication only applies to read and write access via the git smart-http protocol. 
+The authentication method and interaction with git and gitlist is still a work in progress. This would *not* be considered a secure system at this point. That being said, some authentication is in place through modification to the nginx htpasswd file. This authentication only applies to read and write access via the git smart-http protocol. Git-daemon is readonly regardless of this setup.
 
-    #clear (-c) password file and create (-b) initial creds
+*Clear (-c) password file and create (-b) initial creds*
+
     docker exec gitbox htpasswd -cb /etc/nginx/htpasswd <user> <pass>
-    #add (-b) additional users to existing password file
+    
+*Add (-b) additional users to existing password file*
+
     docker exec gitbox htpasswd -b /etc/nginx/htpasswd <user> <pass>
     
 News:
@@ -139,4 +160,4 @@ News:
 *Open Items:*
 
 * Add https setup for nginx
-* Add unauthenticated options for git clone over smart-http (currently read and write is authenticated)
+* Add unauthenticated options for git clone over smart-http (currently both read and write is authenticated).
