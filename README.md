@@ -74,7 +74,7 @@ Client / Server Connection:
 
 **Setup client to use empty repository**
 
-Assuming you have created a empty repo as show above named myrepo.git:
+*This example assumes you have created a empty repository (as show above) named "myrepo.git". This is intended to be executed from your git client command line inside the directory you wish to store the repository locally. See [Getting Started - Git Basics.] (https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)*
 
     mkdir myrepo
     cd myrepo
