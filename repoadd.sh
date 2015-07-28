@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HELP_TEXT="useage: $0 <reponame.git> '<repo description>'"
+HELP_TEXT="useage: $0 <reponame.git> '<repo description>' [export]"
 
 #Permissions
 USER="git"
@@ -24,7 +24,7 @@ fi
 if [[ $NAME =~ \.git$ ]]; then
   $GIT init --bare --shared $REPO/$NAME
   echo $DESC > $REPO/$NAME/description
-  touch $REPO/$NAME/git-daemon-export-ok
+  if [ $3 == "export" ]; then touch $REPO/$NAME/git-daemon-export-ok; fi
   chown $USER:$GROUP -R $REPO
 else
   echo $HELP_TEXT
