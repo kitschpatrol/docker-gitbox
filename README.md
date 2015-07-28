@@ -9,15 +9,15 @@ GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-S
 * git smart http (nginx)
 * gitlist web (nginx)
 
-*Note: Default Username and password for authentication have been set to gitadmin:gitsecret. See notes below about changing credentials. It is advised you reset the default credentails asap.*
+*Note: Default Username and password for authentication have been set to gitadmin:gitsecret. See notes below about changing credentials. It is advised you reset the default credentails immediatly after installation.*
 
-**To run from hub.docker.com image repo:**
+**To run from hub.docker.com image repository:**
 
 From your docker host:
 
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
     
-**To run from github repo (Method 1):**
+**To run from github repository (Method 1):**
 
 From your docker host:
 
@@ -26,7 +26,7 @@ From your docker host:
     docker build --rm=true -t nmarus/gitbox .
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
     
-**To run from github repo (Method 2):**
+**To run from github repository (Method 2):**
 
 From your docker host:
 
@@ -36,16 +36,19 @@ From your docker host:
 
 *Note: There are also scripts to remove the container and image as well as enter a bash shell...*
 
-From your docker host:
+From your docker host you can run:
 
     ./remove.sh
     ./shell.sh
 
 
-Server Repo Setup and Admin:
-----------------------------
+Server Repository Setup and Admin:
+----------------------------------
+After installing gitbox, the first thing you will want to do is add some repositories. This can eitehr be an empty repository, or an existing repository from another git server or [github.com.] (https://github.com)
 
-**Setup a empty repository from docker host:**
+To make this setup easier, gitbox allows an administrator to define these directly from the docker host without needing to access the shell of the containr, or have to worry about setting proper permissions on the files in the docker host's mapped volume. 
+
+**To setup an empty repository from the docker host:**
 
     docker exec gitbox repoadd.sh <reponame>.git <description>
     
@@ -53,7 +56,7 @@ Server Repo Setup and Admin:
     
     docker exec gitbox repoadd.sh myrepo.git "This is my first git repo."
     
-**Clone an existing repository from another location:**
+**To clone an existing repository from another location:**
 
     docker exec gitbox repoclone.sh <url>
     
@@ -61,7 +64,7 @@ Server Repo Setup and Admin:
     
     docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git
     
-**Delete an existing repository:**
+**To delete a gitbox repository:**
 
     docker exec gitbox repodelete.sh <reponame>.git //use with caution//
     
@@ -74,7 +77,7 @@ Client / Server Connection:
 
 **Setup client to use empty repository**
 
-*This example assumes you have created a empty repository (as show above) named "myrepo.git". This is intended to be executed from your git client command line inside the directory you wish to store the repository locally. See [Getting Started - Git Basics.] (https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)*
+*Note: This example assumes you have created a empty repository (as show above) named "myrepo.git". This is intended to be executed from your git client command line inside the directory you wish to store the repository locally. See [Getting Started - Git Basics.] (https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)*
 
     mkdir myrepo
     cd myrepo
@@ -90,19 +93,33 @@ Client / Server Connection:
 
 **[Gitlist] (http://gitlist.org/) Browser Access:**
 
-Open internet browser to http://<docker host ip or hostname> to access web repo browsing...
+You can access git box using a internet browser. This utilizes the gitlist project. 
+
+*Note: This example assumes you are running gitbox using the default docker mappings defined above. If not, adjust accordingly.*
+
+Open an internet browser to **http://<docker host ip or hostname>** to access the gitlist interface and browse the repositories on gitbox.
 
 *Note: If your repository's directory is empty, this url presents a blank page...*
 
 **Git [Daemon] (https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) Access:**
 
+The git daemon running on gitbox allows access to the repository using the git:// protocol.
+
+*Note: This example assumes you are running gitbox using the default docker mappings defined above. If not, adjust accordingly.*
+
     git clone git://<docker host ip or hostname>/myrepo.git
     
-**Git [HTTP] (https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) Access:**
+**Git [SMART-HTTP] (https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) Access:**
+
+The git smart-http daemon running on git box allows a more traditional approach to accessing your repositories. This is similar to what most use with hosted repositories such as github.
 
     git clone http://<docker host ip or hostname>/git/myrepo.git
     
+*Note: There is a skightly differnt url used in retrieving the git repository in this method. This is in contrast to the git:// protocol used by git daemon.*
+
 **Authentication:**
+
+The authentication method and interaction with git and gitlist is still a work in progress. This would *not* be considered a secure system at this point. That being said, some authentication is in place through modification to the nginx htpasswd file. 
 
     #clear (-c) password file and create (-b) initial creds
     docker exec gitbox htpasswd -cb /etc/nginx/htpasswd <user> <pass>
