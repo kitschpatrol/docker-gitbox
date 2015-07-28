@@ -115,7 +115,7 @@ The git smart-http daemon running on git box allows a more traditional approach 
 
     git clone http://<docker host ip or hostname>/git/myrepo.git
     
-*Note: There is a skightly differnt url used in retrieving the git repository in this method. This is in contrast to the git:// protocol used by git daemon.*
+*Note: There is a slightly differnt url used in retrieving the git repository in this method. This is in contrast to the git:// protocol used by git daemon.*
 
 **Authentication:**
 
