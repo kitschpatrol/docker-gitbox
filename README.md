@@ -22,8 +22,8 @@ GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-S
     docker build --rm=true -t nmarus/gitbox .
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
 
-Server Repo Setup:
-------------------
+Server Repo Setup and Admin:
+----------------------------
 
 **Setup a empty repository from docker host:**
 
@@ -40,6 +40,14 @@ Server Repo Setup:
 *example:*
     
     docker exec gitbox repoclone.sh https://github.com/nmarus/docker-gitbox.git
+    
+**Delete an existing repo:**
+
+    docker exec gitbox repodelete.sh <reponame>.git
+    
+*example:*
+    
+    docker exec gitbox repodelete.sh docker-gitbox.git
 
 Client / Server Connection:
 ---------------------------
@@ -85,6 +93,7 @@ News:
 *Change log 2015-7-27*
 
 * Added repoclone option
+* Added repodelete option
 * Cleaned up start.sh
 * Cleaned up Dockerfile
 
