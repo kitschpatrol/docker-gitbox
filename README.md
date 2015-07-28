@@ -15,12 +15,24 @@ GIT offers a [variety of protocols] (https://git-scm.com/book/en/v2/Git-on-the-S
 
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
     
-**To run from github repo:**
+**To run from github repo (Method 1):**
 
     git clone -b stable https://github.com/nmarus/docker-gitbox.git
     cd docker-gitbox
     docker build --rm=true -t nmarus/gitbox .
     docker run -d -it --name gitbox -p 80:80 -p 9418:9418 -v /my/git/repo/directory:/repos nmarus/gitbox
+    
+**To run from github repo (Method 2):**
+
+    git clone -b stable https://github.com/nmarus/docker-gitbox.git
+    cd docker-gitbox
+    ./build.sh
+
+**Optionally, there are also scripts to remove the container and image and enter a bash shell from the docker host...**
+
+    ./remove.sh
+    ./shell.sh
+
 
 Server Repo Setup and Admin:
 ----------------------------
