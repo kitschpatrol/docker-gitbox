@@ -12,14 +12,14 @@ REPO="/repos"
 #GIT executable
 GIT="`which git`"
 
-#Args
-NAME=$1
-DESC=$2
-
-if [ $# >= "2" ]; then
+if (( $# > 3 )); then
   echo $HELP_TEXT
   exit 1
 fi
+
+#Args
+NAME=$1
+DESC=$2
 
 if [[ $NAME =~ \.git$ ]]; then
   $GIT init --bare --shared $REPO/$NAME
