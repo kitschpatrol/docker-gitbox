@@ -17,7 +17,7 @@ RUN useradd -M -s /bin/false git --uid 1000
 #setup git user for git-daemon
 RUN useradd -M -s /bin/false git-ro --uid 1001 && adduser git-ro git
 
-#setup services to run as user git, group git
+#setup nginx services to run as user git, group git
 RUN sed -i 's/user = www-data/user = git/g' /etc/php5/fpm/pool.d/www.conf && \
 	sed -i 's/group = www-data/group = git/g' /etc/php5/fpm/pool.d/www.conf && \
 	sed -i 's/listen.owner = www-data/listen.owner = git/g' /etc/php5/fpm/pool.d/www.conf && \
