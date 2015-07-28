@@ -24,7 +24,7 @@ fi
 if [[ $NAME =~ \.git$ ]]; then
   $GIT init --bare --shared $REPO/$NAME
   echo $DESC > $REPO/$NAME/description
-  if [ $3 == "export" ]; then touch $REPO/$NAME/git-daemon-export-ok; fi
+  if [ "$3" == "export" ]; then touch $REPO/$NAME/git-daemon-export-ok; fi
   chown $USER:$GROUP -R $REPO
 else
   echo $HELP_TEXT
