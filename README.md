@@ -98,7 +98,7 @@ Open internet browser to http://<docker host ip or hostname> to access web repo 
 
     git clone git://<docker host ip or hostname>/myrepo.git
     
-**Git HTTP Access:**
+**Git [HTTP] (https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) Access:**
 
     git clone http://<docker host ip or hostname>/git/myrepo.git
     
