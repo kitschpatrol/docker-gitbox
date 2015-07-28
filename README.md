@@ -48,7 +48,7 @@ After installing gitbox, the first thing you will want to do is add some reposit
 
 To make this setup easier, gitbox allows an administrator to define these directly from the docker host without needing to access the shell of the containr, or have to worry about setting proper permissions on the files in the docker host's mapped volume. 
 
-**To setup an empty repository from the docker host:**
+**To setup an empty repository:**
 
     docker exec gitbox repoadd.sh <reponame>.git <description>
     
