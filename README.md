@@ -139,11 +139,16 @@ News:
 
 *Change log 2015-7-27*
 
+* Changed git-daemon to run with only read only repo access
+* Added 'export' option to repoadd.sh and repoclone.sh scripts
+* Modified README.md to reflect updates
+
+*Change log 2015-7-27*
+
 * Added repoclone option
 * Added repodelete option
 * Cleaned up start.sh
 * Cleaned up Dockerfile
-* Changed gitd to run with ro repo access
 
 *Change log 2015-7-16*
 
