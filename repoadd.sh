@@ -16,7 +16,7 @@ GIT="`which git`"
 NAME=$1
 DESC=$2
 
-if [ $# != "2" ]; then
+if [ $# >= "2" ]; then
   echo $HELP_TEXT
   exit 1
 fi
