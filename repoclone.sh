@@ -16,7 +16,7 @@ GIT="`which git`"
 URL=$1
 NAME="$(echo "$(echo "$URL" | grep / | cut -d/ -f $(($(grep -o '/' <<< "$URL" | wc -l)+1)) -)")"
 
-if [ $# != "1" ]; then
+if [ $# >= "1" ]; then
   echo $HELP_TEXT
   exit 1
 fi
