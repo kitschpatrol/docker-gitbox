@@ -33,13 +33,11 @@ startc() {
   /etc/init.d/php5-fpm start > /dev/null
   /etc/init.d/fcgiwrap start > /dev/null
   /etc/init.d/nginx start > /dev/null
-  /etc/init.d/gitd start > /dev/null
   sclog "The ($dockername) services have started..."  
 }
 
 stopc() {
   sclog "Services for ($dockername) are being stopped..."
-  /etc/init.d/gitd stop > /dev/null
   /etc/init.d/nginx stop > /dev/null
   /etc/init.d/php5-fpm stop > /dev/null
   /etc/init.d/fcgiwrap stop > /dev/null

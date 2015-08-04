@@ -4,7 +4,7 @@ MAINTAINER Nick Marus <nmarus@gmail.com>
 
 #Setup Container
 VOLUME ["/repos"]
-EXPOSE 80 443 9418
+EXPOSE 80 443
 
 #update, install prerequisites, clean up apt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
@@ -13,9 +13,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
 
 #setup git user for nginx
 RUN useradd -M -s /bin/false git --uid 1000
-
-#setup git user for git-daemon
-RUN useradd -M -s /bin/false git-ro --uid 1001 && adduser git-ro git
 
 #setup nginx services to run as user git, group git
 RUN sed -i 's/user = www-data/user = git/g' /etc/php5/fpm/pool.d/www.conf && \
@@ -37,14 +34,12 @@ RUN mkdir -p /var/www && \
 
 #create config files for container startup, gitlist and nginx
 COPY start.sh /start.sh
-COPY gitd.init /etc/init.d/gitd
 COPY repoadd.sh /usr/local/bin/repoadd.sh
 COPY repoclone.sh /usr/local/bin/repoclone.sh
 COPY repodelete.sh /usr/local/bin/repodelete.sh
 COPY config.ini /var/www/gitlist/config.ini
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN chmod 755 /start.sh && \
-	chmod 755 /etc/init.d/gitd && \
 	chmod 755 /usr/local/bin/repo*.sh
 
 #setup default username and password for authentication
