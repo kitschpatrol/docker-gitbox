@@ -1,1 +1,0 @@
-../dockerfiles/skel/docker-bash-functions.sh

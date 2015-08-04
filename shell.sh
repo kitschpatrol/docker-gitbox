@@ -1,1 +1,0 @@
-../dockerfiles/skel/shell.sh
