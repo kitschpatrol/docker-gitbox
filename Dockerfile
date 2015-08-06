@@ -4,7 +4,9 @@ MAINTAINER Nick Marus <nmarus@gmail.com>
 
 #Setup Container
 VOLUME ["/repos"]
-EXPOSE 80 443
+
+# SSL comes from nginx-proxy
+EXPOSE 80
 
 #update, install prerequisites, clean up apt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
@@ -33,16 +35,14 @@ RUN mkdir -p /var/www && \
 	chmod 777 /var/www/gitlist/cache
 
 #create config files for container startup, gitlist and nginx
-COPY start.sh /start.sh
+COPY config/start.sh /start.sh
 COPY repoadd.sh /usr/local/bin/repoadd.sh
 COPY repoclone.sh /usr/local/bin/repoclone.sh
 COPY repodelete.sh /usr/local/bin/repodelete.sh
-COPY config.ini /var/www/gitlist/config.ini
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY config/config.ini /var/www/gitlist/config.ini
+COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/htpasswd /etc/nginx/htpasswd
 RUN chmod 755 /start.sh && \
 	chmod 755 /usr/local/bin/repo*.sh
-
-#setup default username and password for authentication
-RUN htpasswd -cb /etc/nginx/htpasswd gitadmin gitsecret
 
 CMD ["/start.sh"]

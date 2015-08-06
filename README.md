@@ -56,7 +56,7 @@ From your docker host:
     
 *Note: Adding the optional 'export' keyword to this command marks the repository exportable for read-only access from git-daemon (git://[...]). If 'export' is not specified, then the repository must be authenticated to via git smart-http. 
     
-**To delete a gitbox repository:**
+**To delete a gitbox repository:**	
 
 From your docker host:
 

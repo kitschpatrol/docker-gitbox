@@ -1,4 +1,3 @@
-/data/
-*.sublime-workspace
-*.sublime-project
-repos
+repos/*
+config/htpasswd
+start.sh
